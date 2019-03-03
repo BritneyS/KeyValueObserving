@@ -9,12 +9,35 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var inputTextLabel: UILabel!
+    @IBOutlet weak var inputTextField: UITextField!
+    
+    @objc dynamic var inputText: String?
+    var inputTextObservationToken: NSKeyValueObservation?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        inputTextObservationToken = observe(\ViewController.inputText, options: [.new], changeHandler: { (vc, change) in
+            guard let updatedText = change.newValue as? String else { return }
+            vc.inputTextLabel.text = updatedText
+        })
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        inputTextObservationToken?.invalidate()
     }
 
 
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        inputText = inputTextField.text
+    }
+    
+    
 }
 
