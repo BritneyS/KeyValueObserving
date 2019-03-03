@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     var inputTextObservationToken: NSKeyValueObservation?
     var nameObservationToken: NSKeyValueObservation?
     var ageObservationToken: NSKeyValueObservation?
-    var indexCount = 0
+    var nameIndexCount = 0
+    var ageIndexCount = 0
     
 
     override func viewDidLoad() {
@@ -44,6 +45,10 @@ class ViewController: UIViewController {
             vc.nameLabel.text = updatedNameText
         })
         
+        ageObservationToken = observe(\.user.age, options: [.new], changeHandler: { (vc, change) in
+            guard let updatedAgeInt = change.newValue else { return }
+            vc.ageLabel.text = String(describing: updatedAgeInt)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,6 +56,7 @@ class ViewController: UIViewController {
         
         inputTextObservationToken?.invalidate()
         nameObservationToken?.invalidate()
+        ageObservationToken?.invalidate()
     }
 
 
@@ -60,15 +66,22 @@ class ViewController: UIViewController {
     
     @IBAction func updateNameButtonIsTapped(_ sender: UIButton) {
         let nameArray = ["Maria", "Jade", "Christina", "Ash"]
-            user.name = nameArray[indexCount]
-        if indexCount < nameArray.count - 1 {
-            indexCount += 1
+            user.name = nameArray[nameIndexCount]
+        if nameIndexCount < nameArray.count - 1 {
+            nameIndexCount += 1
         } else {
-            indexCount = 0
+            nameIndexCount = 0
         }
     }
     
     @IBAction func updateAgeButtonIsTapped(_ sender: UIButton) {
+        let ageArray = [36, 27, 52, 48]
+        user.age = ageArray[ageIndexCount]
+        if ageIndexCount < ageArray.count - 1 {
+            ageIndexCount += 1
+        } else {
+            ageIndexCount = 0
+        }
     }
 }
 
