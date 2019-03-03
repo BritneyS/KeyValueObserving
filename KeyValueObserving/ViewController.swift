@@ -59,6 +59,22 @@ class ViewController: UIViewController {
         ageObservationToken?.invalidate()
     }
 
+    private func populateLabel(with array: [Any], indexCount: inout Int, propertyName: String) {
+        switch propertyName {
+        case "name":
+            user.name = (array[indexCount] as? String)!
+        case "age":
+            user.age = (array[indexCount] as? Int)!
+        default:
+            return
+        }
+        
+        if indexCount < array.count - 1 {
+            indexCount += 1
+        } else {
+            indexCount = 0
+        }
+    }
 
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         inputText = inputTextField.text
@@ -66,22 +82,12 @@ class ViewController: UIViewController {
     
     @IBAction func updateNameButtonIsTapped(_ sender: UIButton) {
         let nameArray = ["Maria", "Jade", "Christina", "Ash"]
-            user.name = nameArray[nameIndexCount]
-        if nameIndexCount < nameArray.count - 1 {
-            nameIndexCount += 1
-        } else {
-            nameIndexCount = 0
-        }
+        populateLabel(with: nameArray, indexCount: &nameIndexCount, propertyName: "name")
     }
     
     @IBAction func updateAgeButtonIsTapped(_ sender: UIButton) {
         let ageArray = [36, 27, 52, 48]
-        user.age = ageArray[ageIndexCount]
-        if ageIndexCount < ageArray.count - 1 {
-            ageIndexCount += 1
-        } else {
-            ageIndexCount = 0
-        }
+        populateLabel(with: ageArray, indexCount: &ageIndexCount, propertyName: "age")
     }
 }
 
