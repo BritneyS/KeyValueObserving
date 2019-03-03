@@ -12,6 +12,11 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var inputTextLabel: UILabel!
     @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
+    
+    
+    
     
     @objc dynamic var inputText: String?
     var inputTextObservationToken: NSKeyValueObservation?
@@ -38,6 +43,10 @@ class ViewController: UIViewController {
         inputText = inputTextField.text
     }
     
+    @IBAction func updateNameButtonIsTapped(_ sender: UIButton) {
+    }
     
+    @IBAction func updateAgeButtonIsTapped(_ sender: UIButton) {
+    }
 }
 
