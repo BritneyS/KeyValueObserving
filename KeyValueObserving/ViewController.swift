@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Property {
+    case name
+    case age
+}
+
 class User: NSObject {
     @objc dynamic var name = String()
     @objc var age = 0 {
@@ -59,14 +64,12 @@ class ViewController: UIViewController {
         ageObservationToken?.invalidate()
     }
 
-    private func populateLabel(with array: [Any], indexCount: inout Int, propertyName: String) {
+    private func populateLabel(with array: [Any], indexCount: inout Int, propertyName: Property) {
         switch propertyName {
-        case "name":
+        case .name:
             user.name = (array[indexCount] as? String)!
-        case "age":
+        case .age:
             user.age = (array[indexCount] as? Int)!
-        default:
-            return
         }
         
         if indexCount < array.count - 1 {
@@ -82,12 +85,12 @@ class ViewController: UIViewController {
     
     @IBAction func updateNameButtonIsTapped(_ sender: UIButton) {
         let nameArray = ["Maria", "Jade", "Christina", "Ash"]
-        populateLabel(with: nameArray, indexCount: &nameIndexCount, propertyName: "name")
+        populateLabel(with: nameArray, indexCount: &nameIndexCount, propertyName: .name)
     }
     
     @IBAction func updateAgeButtonIsTapped(_ sender: UIButton) {
         let ageArray = [36, 27, 52, 48]
-        populateLabel(with: ageArray, indexCount: &ageIndexCount, propertyName: "age")
+        populateLabel(with: ageArray, indexCount: &ageIndexCount, propertyName: .age)
     }
 }
 
