@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum Property {
+    case name
+    case age
+}
+
 class User: NSObject {
     @objc dynamic var name = String()
     @objc var age = 0 {
@@ -28,7 +33,8 @@ class ViewController: UIViewController {
     var inputTextObservationToken: NSKeyValueObservation?
     var nameObservationToken: NSKeyValueObservation?
     var ageObservationToken: NSKeyValueObservation?
-    var indexCount = 0
+    var nameIndexCount = 0
+    var ageIndexCount = 0
     
 
     override func viewDidLoad() {
@@ -44,6 +50,10 @@ class ViewController: UIViewController {
             vc.nameLabel.text = updatedNameText
         })
         
+        ageObservationToken = observe(\.user.age, options: [.new], changeHandler: { (vc, change) in
+            guard let updatedAgeInt = change.newValue else { return }
+            vc.ageLabel.text = String(describing: updatedAgeInt)
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,8 +61,23 @@ class ViewController: UIViewController {
         
         inputTextObservationToken?.invalidate()
         nameObservationToken?.invalidate()
+        ageObservationToken?.invalidate()
     }
 
+    private func populateLabel(with array: [Any], indexCount: inout Int, propertyName: Property) {
+        switch propertyName {
+        case .name:
+            user.name = (array[indexCount] as? String)!
+        case .age:
+            user.age = (array[indexCount] as? Int)!
+        }
+        
+        if indexCount < array.count - 1 {
+            indexCount += 1
+        } else {
+            indexCount = 0
+        }
+    }
 
     @IBAction func textFieldDidChange(_ sender: UITextField) {
         inputText = inputTextField.text
@@ -60,15 +85,12 @@ class ViewController: UIViewController {
     
     @IBAction func updateNameButtonIsTapped(_ sender: UIButton) {
         let nameArray = ["Maria", "Jade", "Christina", "Ash"]
-            user.name = nameArray[indexCount]
-        if indexCount < nameArray.count - 1 {
-            indexCount += 1
-        } else {
-            indexCount = 0
-        }
+        populateLabel(with: nameArray, indexCount: &nameIndexCount, propertyName: .name)
     }
     
     @IBAction func updateAgeButtonIsTapped(_ sender: UIButton) {
+        let ageArray = [36, 27, 52, 48]
+        populateLabel(with: ageArray, indexCount: &ageIndexCount, propertyName: .age)
     }
 }
 
