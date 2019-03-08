@@ -29,7 +29,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter text here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pu2-o2-pJB">
                                         <rect key="frame" x="0.0" y="297.33333333333331" width="214" height="50"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.44943316778869447" green="0.0" blue="0.73880748056994816" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="214" id="3oz-dt-kRt"/>
                                             <constraint firstAttribute="height" constant="50" id="dEO-BZ-QtG"/>
