@@ -48,6 +48,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
+    @IBOutlet weak var updateNameButton: UIButton! {
+        didSet { updateNameButton.layer.cornerRadius = 25 }
+    }
+    @IBOutlet weak var updateAgeButton: UIButton! {
+        didSet { updateAgeButton.layer.cornerRadius = 25 }
+    }
+    
     
     // Expose object to Objective-C with @objc decorator
     @objc let user = User()

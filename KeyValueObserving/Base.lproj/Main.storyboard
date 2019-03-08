@@ -100,6 +100,8 @@
                         <outlet property="inputTextField" destination="pu2-o2-pJB" id="XCO-bn-4cQ"/>
                         <outlet property="inputTextLabel" destination="nfH-ed-bih" id="qKM-Un-OBU"/>
                         <outlet property="nameLabel" destination="KTG-gR-9WU" id="q6Y-YF-6lg"/>
+                        <outlet property="updateAgeButton" destination="ZdG-Ch-EGM" id="km4-IS-ely"/>
+                        <outlet property="updateNameButton" destination="2mT-bj-k1r" id="CMP-KC-ATc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
