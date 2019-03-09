@@ -28,9 +28,9 @@ enum Property {
     case name
     case age
 }
-// Observable class must inherit from 'NSObject' + it's properties must be exposed to Objective-C with @objc decorator
+// Observable class must inherit from 'NSObject' + its properties must be exposed to Objective-C with @objc decorator
 class User: NSObject {
-    // Two ways to do declare class :
+    // Two ways to do declare class properties to be observable:
     
     // declare the property `dynamic`
     @objc dynamic var name = String()
