@@ -1,6 +1,6 @@
 # KeyValueObserving
 
-**README Last Updated: 3-18-19**
+**README Last Updated: 4-17-19**
 
 ## General Info :clipboard:
 
@@ -9,6 +9,20 @@ This is a demo app to demonstrate KVO within the iOS Cocoa API in Swift.
 **Key-Value Observation:** Reactive programming without dependencies!
 
 KVO - property change observation + reacting to changes with certain behaviors
+
+**How is this possible?**
+
+Key-Value Coding in the Cocoa Framework:
+
+- The `NSKeyValueCoding` protocol enables indirect access to object property values through keys (property names)
+    
+    Example: Property value getter `valueForKey:` and property value setter `setValue:forKey:`
+
+- Objects that inherit from `NSObject` also conform to the `NSKeyValueCoding` protocol
+
+- Changes are responded to via property observation tokens of type `NSKeyValueObservation`, that observes and reacts to property value changes via the `NSKeyValueObservedChange` type, which has access to modified property values through its `newValue` and `oldValue` properties
+
+- The reaction to property value changes takes place in a closure referred to as the `changeHandler` (see the project for examples!)
 
 **Why learn this when we have RxSwift, ReactiveSwift, etc?**
 
@@ -26,7 +40,7 @@ Disadvantages:
 
     Usually not a concern if you need the object to be a class since it's a reference type, but some folks still prefer structs 🤷🏾‍♀️ (I like structs)
      
-## Basics
+## Basics :computer:
 
 - Observable class must inherit from 'NSObject' + its properties must be exposed to Objective-C with @objc decorator
 - Two ways to do declare class properties to be observable: 1) declare the property `dynamic` OR set `willSet` and `didSet` with keyPaths (two ways to do that, too!)
@@ -114,4 +128,10 @@ This project is an elaboration on the tutorial by [Kilo Loco](https://www.youtub
 
 ## More Info :information_source:
 
-Apple's Docs: [Using Key-Value Observing in Swift](https://developer.apple.com/documentation/swift/cocoa_design_patterns/using_key-value_observing_in_swift)
+Apple's Docs: 
+
+[Using Key-Value Observing in Swift](https://developer.apple.com/documentation/swift/cocoa_design_patterns/using_key-value_observing_in_swift)
+
+[Key-Value Coding in the Cocoa Framework](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html)
+
+[NSKeyValueObservedChange Doc](https://developer.apple.com/documentation/foundation/nskeyvalueobservedchange)
