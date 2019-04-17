@@ -20,6 +20,8 @@ Key-Value Coding in the Cocoa Framework:
 
 - Objects that inherit from `NSObject` also conform to the `NSKeyValueCoding` protocol
 
+NSKeyValueObservation:
+
 - Changes are responded to via property observation tokens of type `NSKeyValueObservation`, that observes and reacts to property value changes via the `NSKeyValueObservedChange` type, which has access to modified property values through its `newValue` and `oldValue` properties
 
 - The reaction to property value changes takes place in a closure referred to as the `changeHandler` (see the project for examples!)
@@ -99,7 +101,7 @@ override func viewDidLoad() {
     })
 }
 ```
-- Invalidate observation tokens to stop observing
+- Invalidate observation tokens to stop observing!
 
 ```swift
 override func viewWillDisappear(_ animated: Bool) {
@@ -135,3 +137,5 @@ Apple's Docs:
 [Key-Value Coding in the Cocoa Framework](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html)
 
 [NSKeyValueObservedChange Doc](https://developer.apple.com/documentation/foundation/nskeyvalueobservedchange)
+
+[NSKeyValueObservation Doc](https://developer.apple.com/documentation/foundation/nskeyvalueobservation)
