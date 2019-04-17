@@ -38,13 +38,13 @@ Disadvantages:
 
     Example: Swift enums can only be observed using the string raw value
       
-- Swift Structs are not observable, since structs cannot inherit from 'NSObject' + @objc can only be used on class members
+- Swift Structs are not observable, since structs cannot inherit from `NSObject` + @objc can only be used on class members
 
     Usually not a concern if you need the object to be a class since it's a reference type, but some folks still prefer structs 🤷🏾‍♀️ (I like structs)
      
 ## Basics :computer:
 
-- Observable class must inherit from 'NSObject' + its properties must be exposed to Objective-C with @objc decorator
+- Observable class must inherit from `NSObject` + its properties must be exposed to Objective-C with @objc decorator
 - Two ways to do declare class properties to be observable: 1) declare the property `dynamic` OR set `willSet` and `didSet` with keyPaths (two ways to do that, too!)
 
 ```swift
